@@ -18,7 +18,7 @@ module.exports = function (RED) {
 
         this.name = config.name;
         this.serialport = config.serialport;
-        this.baudrate = config.baudrate;
+        this.baudrate = Number(config.baudrate);
         this.mode = config.mode;
         this.parse = config.parse;
         this.init = config.init;
