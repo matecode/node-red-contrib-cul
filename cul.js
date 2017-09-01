@@ -148,7 +148,7 @@ module.exports = function (RED) {
             node.log('culout.onInput, msg[' + util.inspect(msg) + ']');
                if (!(msg && msg.hasOwnProperty('payload'))) return;
 		if (msg.payload.hasOwnProperty('write')){
-               		node.ctrl.culConn.write(msg.payload);
+               		node.ctrl.culConn.write(msg.payload.write);
 		}
 		if (msg.payload.hasOwnProperty('cmd')){
                		node.ctrl.culConn.cmd(...msg.payload.cmd);
