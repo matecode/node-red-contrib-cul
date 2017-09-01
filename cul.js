@@ -147,7 +147,7 @@ module.exports = function (RED) {
         this.on("input", function (msg) {
             node.log('culout.onInput, msg[' + util.inspect(msg) + ']');
                if (!(msg && msg.hasOwnProperty('payload'))) return;
-               ctrl.culConn.write(msg.payload);
+               node.ctrl.culConn.write(msg.payload);
 
 //             var payload;
 //             if (typeof(msg.payload) === "object") {
