@@ -146,17 +146,19 @@ module.exports = function (RED) {
         //node.log('new CUL-OUT, config: ' + util.inspect(config));
         this.on("input", function (msg) {
             node.log('culout.onInput, msg[' + util.inspect(msg) + ']');
-            if (!(msg && msg.hasOwnProperty('payload'))) return;
-            var payload;
-            if (typeof(msg.payload) === "object") {
-                payload = msg.payload;
-            } else if (typeof(msg.payload) === "string") {
-                payload = JSON.parse(msg.payload);
-            }
-            if (payload == null) {
-                node.log('culout.onInput: illegal msg.payload!');
-                return;
-            }
+               if (!(msg && msg.hasOwnProperty('payload'))) return;
+               ctrl.culConn.write(msg.payload);
+
+//             var payload;
+//             if (typeof(msg.payload) === "object") {
+//                 payload = msg.payload;
+//             } else if (typeof(msg.payload) === "string") {
+//                 payload = JSON.parse(msg.payload);
+//             }
+//             if (payload == null) {
+//                 node.log('culout.onInput: illegal msg.payload!');
+//                 return;
+//             }
 /*            this.groupAddrSend(payload.dstgad, payload.value, payload.dpt, action, function (err) {
                 if (err) {
                     node.error('groupAddrSend error: ' + util.inspect(err));
