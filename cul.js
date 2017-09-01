@@ -147,7 +147,12 @@ module.exports = function (RED) {
         this.on("input", function (msg) {
             node.log('culout.onInput, msg[' + util.inspect(msg) + ']');
                if (!(msg && msg.hasOwnProperty('payload'))) return;
-               node.ctrl.culConn.write(msg.payload);
+		if (msg.payload.hasOwnProperty('write')){
+               		node.ctrl.culConn.write(msg.payload);
+		}
+		if (msg.payload.hasOwnProperty('cmd')){
+               		node.ctrl.culConn.cmd(...msg.payload.cmd);
+		}
 
 //             var payload;
 //             if (typeof(msg.payload) === "object") {
